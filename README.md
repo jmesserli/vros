@@ -4,7 +4,7 @@
 
 ### Cards
 
-A card is a hash. The key is its serial number. Fields contained:
+A card is a hash. The key is its serial number, prefixed with "card:". Fields contained:
 
 - name: The full name of the owner
 - email: The email of the owner
