@@ -51,7 +51,7 @@ func (m CardModel) Get(serial string) Card {
 	}
 }
 
-func (m CardModel) New(card Card) {
+func (m CardModel) Save(card Card) {
 	fieldsMap := make(map[string]interface{})
 	fieldsMap["name"] = card.Name
 	fieldsMap["email"] = card.Email

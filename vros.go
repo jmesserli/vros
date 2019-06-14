@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/jmesserli/vros/config"
 	"github.com/jmesserli/vros/model"
 )
@@ -17,4 +20,12 @@ func main() {
 		Email:        "hans@beispiel.ch",
 		RegisterCode: "asdf",
 	}
+
+	stamp := sModel.Get(card.Serial, time.Now())
+	sModel.AddTime(stamp, time.Now())
+	stamp = sModel.Get(card.Serial, time.Now())
+	stamps := sModel.GetAllForDay(time.Now())
+
+	fmt.Println(stamp)
+	fmt.Println(stamps)
 }

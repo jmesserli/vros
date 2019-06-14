@@ -12,6 +12,6 @@ A card is a hash. The key is its serial number, prefixed with "card:". Fields co
 
 ### Stamp
 
-The stamps of one day are aggregated in a hash. The key follows the schema "stamps:yyyymmdd".
+The stamps of one day are aggregated in a hash. The key follows the schema "stamps:yyyy-mm-dd".
 
 One stamp is represented by a key / value pair, where the key is the cards serial number and the value is a comma-separated string of times
