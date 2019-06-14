@@ -1,9 +1,8 @@
 package config
 
 import (
+	"encoding/json"
 	"io/ioutil"
-
-	"gopkg.in/yaml.v3"
 )
 
 type Weekday int
@@ -20,20 +19,20 @@ const (
 )
 
 type RedisConfig struct {
-	Host string
-	Port int
+	Host string `json:"host"`
+	Port int    `json:"port"`
 }
 
 type Verlesung struct {
-	Name        string
-	Time        string
-	Days        []Weekday
-	SignupStart string
+	Name        string    `json:"name"`
+	Time        string    `json:"time"`
+	Days        []Weekday `json:"days"`
+	SignupStart string    `json:"signup_start"`
 }
 
 type Config struct {
-	Redis       RedisConfig
-	Verlesungen []Verlesung
+	Redis       RedisConfig `json:"redis"`
+	Verlesungen []Verlesung `json:"verlesungen"`
 }
 
 func ReadConfig(path string) Config {
@@ -43,7 +42,7 @@ func ReadConfig(path string) Config {
 	}
 
 	config := Config{}
-	err = yaml.Unmarshal(fileContent, &config)
+	err = json.Unmarshal(fileContent, &config)
 	if err != nil {
 		panic(err)
 	}

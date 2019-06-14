@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	config := config.ReadConfig("./config.yaml")
+	config := config.ReadConfig("./config.json")
 	fmt.Printf("%+v", config)
 }
