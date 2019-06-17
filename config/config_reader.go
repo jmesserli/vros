@@ -23,6 +23,11 @@ type RedisConfig struct {
 	Port int    `json:"port"`
 }
 
+type TwilioConfig struct {
+	SID    string `json:"sid"`
+	Secret string `json:"secret"`
+}
+
 type Verlesung struct {
 	Name        string    `json:"name"`
 	Time        string    `json:"time"`
@@ -31,8 +36,9 @@ type Verlesung struct {
 }
 
 type Config struct {
-	Redis       RedisConfig `json:"redis"`
-	Verlesungen []Verlesung `json:"verlesungen"`
+	Redis       RedisConfig  `json:"redis"`
+	Verlesungen []Verlesung  `json:"verlesungen"`
+	Twilio      TwilioConfig `json:"twilio"`
 }
 
 func ReadConfig(path string) Config {
