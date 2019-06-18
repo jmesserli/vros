@@ -28,7 +28,12 @@ type TwilioConfig struct {
 	Secret string `json:"secret"`
 }
 
-type Verlesung struct {
+type VerlesungConfig struct {
+	Entries               []VerlesungEntry `json:"entries"`
+	ReminderMinutesBefore int              `json:"reminder_minutes_before"`
+}
+
+type VerlesungEntry struct {
 	Name        string    `json:"name"`
 	Time        string    `json:"time"`
 	Days        []Weekday `json:"days"`
@@ -36,9 +41,9 @@ type Verlesung struct {
 }
 
 type Config struct {
-	Redis       RedisConfig  `json:"redis"`
-	Verlesungen []Verlesung  `json:"verlesungen"`
-	Twilio      TwilioConfig `json:"twilio"`
+	Redis     RedisConfig     `json:"redis"`
+	Verlesung VerlesungConfig `json:"verlesung"`
+	Twilio    TwilioConfig    `json:"twilio"`
 }
 
 func ReadConfig(path string) Config {
