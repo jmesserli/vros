@@ -57,10 +57,12 @@ func (c scheduledChecker) checkActionNeeded() {
 
 		if vHour == hour && vMinute == minute {
 			// Time to send the report
+			fmt.Printf("The presence report for '%s' should be sent now (%s)", verlesung.Name, verlesung.Time)
 		}
 
 		if vHour == rHour && vMinute == rMinute {
 			// Time to send the reminders
+			fmt.Printf("The reminders for '%s' should be sent now (%s)", verlesung.Name, verlesung.Time)
 		}
 	}
 }
