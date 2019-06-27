@@ -1,6 +1,7 @@
 package web
 
 import (
+	"io/ioutil"
 	"net/http"
 
 	"github.com/jmesserli/vros/config"
@@ -19,5 +20,15 @@ func (h handlers) Ping(c *ace.C) {
 	c.JSON(http.StatusOK, map[string]string{
 		"status":  "ok",
 		"message": "pong",
+	})
+}
+
+func (h handlers) Echo(c *ace.C) {
+	defer c.Request.Body.Close()
+	b, _ := ioutil.ReadAll(c.Request.Body)
+
+	c.JSON(http.StatusOK, map[string]string{
+		"status":  "ok",
+		"request": string(b),
 	})
 }
