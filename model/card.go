@@ -34,6 +34,7 @@ func (m CardModel) mkKey(serial string) string {
 func (m CardModel) getRegisterCode() string {
 	if !m.Exists(RegisterCodeCardSerial) {
 		m.Save(Card{
+			Serial:       RegisterCodeCardSerial,
 			RegisterCode: "1",
 		})
 		return "1"
