@@ -50,6 +50,9 @@ func (m CardModel) getRegisterCode() string {
 	if rc >= 100 {
 		rc = 1
 	}
+	if rc%10 == 0 {
+		rc++
+	}
 	card.RegisterCode = strconv.Itoa(rc)
 	m.Save(card)
 
