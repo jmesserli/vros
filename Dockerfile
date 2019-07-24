@@ -9,5 +9,5 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates tzdata
 WORKDIR /root/
 COPY --from=builder /go/bin/vros .
-ADD static ./static
+ADD static/ /root/static
 CMD ["./vros"]
