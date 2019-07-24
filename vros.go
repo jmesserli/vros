@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	config := config.ReadConfig("./config.json")
-	cModel := model.NewCardModel(config.Redis)
-	sModel := model.NewStampModel(config.Redis, cModel)
+	cfg := config.ReadConfig("./config.json")
+	cModel := model.NewCardModel(cfg.Redis)
+	sModel := model.NewStampModel(cfg.Redis, cModel)
 
-	scheduling.ScheduleJobs(&config)
-	web.RegisterAndRun(&config, &cModel, &sModel)
+	scheduling.ScheduleJobs(&cfg)
+	web.RegisterAndRun(&cfg, &cModel, &sModel)
 }

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jmesserli/vros/config"
-	"github.com/whiteshtef/clockwork"
+	"github.com/robfig/cron"
 )
 
 type scheduledChecker struct {
@@ -19,8 +19,9 @@ func ScheduleJobs(config *config.Config) {
 		Config: config,
 	}
 
-	s := clockwork.NewScheduler()
-	s.Schedule().Every().Minute().Do(checker.checkActionNeeded)
+	c := cron.New()
+	_ = c.AddFunc("0 * * * * *", checker.checkActionNeeded)
+	c.Start()
 }
 
 func (c scheduledChecker) checkActionNeeded() {

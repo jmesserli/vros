@@ -18,5 +18,6 @@ func RegisterAndRun(config *config.Config, cModel *model.CardModel, sModel *mode
 
 	a.GET("/ping", handlers.Ping)
 	a.POST("/echo", handlers.Echo)
+	a.POST("/stamp", handlers.StampCard)
 	a.Run(":80")
 }
