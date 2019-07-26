@@ -13,7 +13,7 @@ import (
 type Card struct {
 	Serial       string
 	Name         string
-	Email        string
+	Mobile       string
 	RegisterCode string
 }
 
@@ -135,7 +135,7 @@ func (m CardModel) Get(serial string) Card {
 	return Card{
 		Serial:       serial,
 		Name:         resultMap["name"],
-		Email:        resultMap["email"],
+		Mobile:       resultMap["mobile"],
 		RegisterCode: resultMap["register_code"],
 	}
 }
@@ -147,7 +147,7 @@ func (m CardModel) Save(card Card) {
 func (m CardModel) save(card Card, ttl time.Duration) {
 	fieldsMap := make(map[string]interface{})
 	fieldsMap["name"] = card.Name
-	fieldsMap["email"] = card.Email
+	fieldsMap["mobile"] = card.Mobile
 	fieldsMap["register_code"] = card.RegisterCode
 
 	key := m.mkKey(card.Serial)
