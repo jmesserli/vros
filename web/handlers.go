@@ -36,6 +36,10 @@ func userError(message string, c *ace.C) {
 	returnStatus(error4, message, c)
 }
 
+func serverError(message string, c *ace.C) {
+	returnStatus(error5, message, c)
+}
+
 func (h handlers) Ping(c *ace.C) {
 	returnStatus(ok, "Pong", c)
 }
@@ -65,7 +69,13 @@ func (h handlers) StampCard(c *ace.C) {
 
 	cardExists := h.CardModel.Exists(json.Serial)
 	if !cardExists {
-		card := h.CardModel.CreateWithRegisterCode(json.Serial)
+		card, err := h.CardModel.CreateWithRegisterCode(json.Serial)
+
+		if err != nil {
+			serverError(err.Error(), c)
+			return
+		}
+
 		c.JSON(http.StatusOK, map[string]string{
 			"status":        "ok",
 			"action":        "register",
